@@ -9,12 +9,14 @@ import java.io.Reader;
 public class LoadMap {
 
 
-public void loadmap(){
+public int[][] loadmap(){
 	
 	FileReader fr = null;
 	BufferedReader br = null;
 	
 	String[] lines = new String[400];
+	
+	int[][] intmap = new int[400][640];
 	
 	File file = new File("Map1.txt");	
 
@@ -43,7 +45,13 @@ public void loadmap(){
 	  System.out.println("Finished Reading");
 	}
 	
+	for(int i=0;i< lines.length-1; i++){
+	    for (int j = 0; j < lines[i].length(); j++){
+	    	intmap[i][j] = lines[i].charAt(j) - '0';
+	    }
+	}
 	
+	return intmap;
 }
 
 }

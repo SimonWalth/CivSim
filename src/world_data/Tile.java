@@ -7,15 +7,15 @@ public class Tile {
 	String Terrain;
 	Color TileColer;
 	int Food;
-	int Water;
 	int Movement;
 	int upTime;
-	int BuildLvl;
+	int BuildLvlStreet;
+	int BuildLvlFarm;
+	int BuildLvlWall;
 	
-	Tile(String Terrain,Color TileColer, int Food, int Water){
+	Tile(String Terrain,Color TileColer, int Food){
 		this.Terrain = Terrain;
 		this.Food = Food;
-		this.Water = Water;
 		this.TileColer = TileColer;
 		
 		calculateMovement();
@@ -24,8 +24,12 @@ public class Tile {
 	
 	private void calculateMovement(){
 		//if(Terrain == "Grasland"){
-			Movement = 0;
+			Movement = 1;
 		//}
+	}
+	
+	private void calculateFood(){
+		Food = Food + 1;
 	}
 
 	public String getTerrain() {
@@ -36,9 +40,6 @@ public class Tile {
 		return Food;
 	}
 
-	public int getWater() {
-		return Water;
-	}
 
 	public int getMovement() {
 		return Movement;
@@ -52,12 +53,28 @@ public class Tile {
 		this.upTime = upTime;
 	}
 
-	public int getBuildLvl() {
-		return BuildLvl;
+	public int getBuildLvlStr() {
+		return BuildLvlStreet;
 	}
 
-	public void setBuildLvl(int buildLvl) {
-		BuildLvl = buildLvl;
+	public void setBuildLvlStr(int buildLvl) {
+		BuildLvlStreet = buildLvl;
+	}
+	
+	public int getBuildLvlFarm() {
+		return BuildLvlFarm;
+	}
+
+	public void setBuildLvlFarm(int buildLvl) {
+		BuildLvlFarm = buildLvl;
+	}
+	
+	public int getBuildLvlWall() {
+		return BuildLvlWall;
+	}
+
+	public void setBuildLvlWall(int buildLvl) {
+		BuildLvlWall = buildLvl;
 	}
 
 	public Color getColer() {

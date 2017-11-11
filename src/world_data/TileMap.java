@@ -25,13 +25,13 @@ public class TileMap {
 		        //CITY = new Tile("Grassland", CITYCOL, 10,10),
 		        //DESERT= new Tile("Grassland", DESERTCOL, 10,10),
 		        //DIRT_ROAD= new Tile("Grassland", DIRT_ROADCOL, 10,10),
-		        FOREST= new Tile("Grassland", FORESTCOL, 10,10),
+			    PLAINS= new Tile("Grassland", PLAINSCOL, 10),
+		        FOREST= new Tile("Grassland", FORESTCOL, 10),
 		        //HILLS= new Tile("Grassland", HILLSCOL, 10,10),
 		        //LAKE= new Tile("Grassland", LAKECOL, 10,10),
-		        MOUNTAINS= new Tile("Grassland", MOUNTAINSCOL, 10,10),
-		        OCEAN= new Tile("Grassland", OCEANCOL, 10,10),
-		        //PAVED_ROAD= new Tile("Grassland", PAVED_ROADCOL, 10,10),
-		        PLAINS= new Tile("Grassland", PLAINSCOL, 10,10)
+		        MOUNTAINS= new Tile("Grassland", MOUNTAINSCOL, 10),
+		        OCEAN= new Tile("Grassland", OCEANCOL, 10),
+		        //PAVED_ROAD= new Tile("Grassland", PAVED_ROADCOL, 10,10)
 		    };
 	
 	TileMap(int rows, int cols){
@@ -44,6 +44,18 @@ public class TileMap {
                 int randomTileIndex = r.nextInt(TILETYPE.length);
                 Tile randomTile = TILETYPE[randomTileIndex];
                 this.map[i][j] = randomTile;
+            }
+        }
+	}
+	
+	TileMap(int[][] intmap){
+		map = new Tile[intmap[0].length][intmap.length];
+				
+		for (int i = 0; i <= intmap.length-1; i++) {
+            for (int j = 0; j <= intmap[0].length-1; j++) {
+            	int TileIndex = intmap[i][j];
+                Tile mapTile = TILETYPE[TileIndex];
+                this.map[j][i] = mapTile;
             }
         }
 	}

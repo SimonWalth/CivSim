@@ -12,8 +12,7 @@ public class Main {
 	        // http://docs.oracle.com/javase/tutorial/uiswing/concurrency/initial.html
 	        SwingUtilities.invokeLater(new Runnable() {
 	            public void run() {
-	            	LoadMap NewMap = new LoadMap();
-	            	NewMap.loadmap();
+	            	
 	                JFrame frame = new JFrame("CivSim");
 	                World map = new World();
 	                frame.add(map);
