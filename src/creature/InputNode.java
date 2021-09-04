@@ -13,6 +13,7 @@ public class InputNode extends Node {
 
 
 	public float GetValue(){
-		return this.GetValue();
+//		return Sigmoid(value);
+		return value;
 	}
 }

@@ -8,17 +8,32 @@ import java.io.Reader;
 
 public class LoadMap {
 
+	private File file;
+	private int width;
+	private int hight;
+	
+	private int[][] intmap;
+	
+	public LoadMap(File file, int width, int hight){
+		this.file = file;
+		this.width= width;
+		this.hight = hight;
+		
+		intmap = new int[hight][width];
+		
+		loadmap();
+	}
+	
 
 public int[][] loadmap(){
+
 	
 	FileReader fr = null;
 	BufferedReader br = null;
 	
-	String[] lines = new String[400];
+	String[] lines = new String[hight];
 	
-	int[][] intmap = new int[400][640];
 	
-	File file = new File("Map1.txt");	
 
 	System.out.println("dsfk");
 	
@@ -51,6 +66,10 @@ public int[][] loadmap(){
 	    }
 	}
 	
+	return intmap;
+}
+
+public int[][] getMap(){
 	return intmap;
 }
 

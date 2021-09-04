@@ -6,6 +6,8 @@ import java.util.Random;
 public class TileMap {
 
 	public Tile[][] map;
+	private int rows, cols;
+	private Tile wasteland = new Tile("Wastland", new Color(255,255,255), 0);
 	
 	//colors
 	public static final Color CITYCOL = new Color(214,217,223);
@@ -18,50 +20,77 @@ public class TileMap {
     public static final Color OCEANCOL = new Color(0,0,153);
     public static final Color PAVED_ROADCOL = new Color(51,51,0);
     public static final Color PLAINSCOL = new Color(102,153,0);
+    public static final Color WASTLANDCOL = new Color(255,255,255);
     
-    Tile CITY,DESERT, DIRT_ROAD, FOREST, HILLS, LAKE, MOUNTAINS, OCEAN, PAVED_ROAD, PLAINS;
+
 	
-	   public Tile[] TILETYPE = {
-		        //CITY = new Tile("Grassland", CITYCOL, 10,10),
-		        //DESERT= new Tile("Grassland", DESERTCOL, 10,10),
-		        //DIRT_ROAD= new Tile("Grassland", DIRT_ROADCOL, 10,10),
-			    PLAINS= new Tile("Grassland", PLAINSCOL, 10),
-		        FOREST= new Tile("Grassland", FORESTCOL, 10),
-		        //HILLS= new Tile("Grassland", HILLSCOL, 10,10),
-		        //LAKE= new Tile("Grassland", LAKECOL, 10,10),
-		        MOUNTAINS= new Tile("Grassland", MOUNTAINSCOL, 10),
-		        OCEAN= new Tile("Grassland", OCEANCOL, 10),
-		        //PAVED_ROAD= new Tile("Grassland", PAVED_ROADCOL, 10,10)
-		    };
-	
-	TileMap(int rows, int cols){
-		map = new Tile[rows][cols];
-		
-        Random r = new Random();
-        // Randomize the terrain
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                int randomTileIndex = r.nextInt(TILETYPE.length);
-                Tile randomTile = TILETYPE[randomTileIndex];
-                this.map[i][j] = randomTile;
-            }
-        }
-	}
+//	TileMap(int rows, int cols){
+//		this.rows= rows;
+//		this.cols= cols;
+//		map = new Tile[rows][cols];
+//		
+//        Random r = new Random();
+//        // Randomize the terrain
+//        for (int i = 0; i < rows; i++) {
+//            for (int j = 0; j < cols; j++) {
+//                int randomTileIndex = r.nextInt(TILETYPE.length);
+//                Tile randomTile = TILETYPE[randomTileIndex];
+//                this.map[i][j] = randomTile;
+//            }
+//        }
+//	}
 	
 	TileMap(int[][] intmap){
+		
+		   
+		
 		map = new Tile[intmap[0].length][intmap.length];
-				
+		
+		rows = intmap.length;
+		cols = intmap[0].length;
+		
 		for (int i = 0; i <= intmap.length-1; i++) {
             for (int j = 0; j <= intmap[0].length-1; j++) {
             	int TileIndex = intmap[i][j];
-                Tile mapTile = TILETYPE[TileIndex];
+//                Tile mapTile = TILETYPE[TileIndex];
+            	Tile mapTile = this.getNewTile(TileIndex);
                 this.map[j][i] = mapTile;
             }
         }
 	}
 	
+	private Tile getNewTile(int i){
+		Tile[] tiletypes = new Tile[4];
+		   tiletypes[3]= new Tile("Ocean", OCEANCOL, 0);
+		   tiletypes[2]= new Tile("Montains", MOUNTAINSCOL, 1000);
+		   tiletypes[1]= new Tile("Forest", FORESTCOL, 1000);
+		   tiletypes[0]= new Tile("Grassland", PLAINSCOL, 1000);
+		   
+		   return tiletypes[i];
+	}
+	
 	public Tile getTile(int i, int j){
+		if(i>cols-1 ||i<0){
+			return wasteland;
+		}
+		if(j>rows-1 ||j<0){
+			return wasteland;
+		}
+		
 		return map[i][j];
+	}
+	
+	public void updateFood(){
+//		System.out.println("updatefood");
+		for(int i=0;i< cols; i++){
+			for(int j=0;j<rows;j++){
+				
+				map[i][j].calculateFood();
+			}
+		}
+//		map[0][0].calculateFood();
+		
+		
 	}
 	
 }

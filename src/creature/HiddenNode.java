@@ -2,11 +2,17 @@ package creature;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class OutputNode extends Node {
+public class HiddenNode extends Node {
 
-	private float value;
+	float value;
 	List<Connection> connections = new ArrayList<Connection>();
+	
+//	public HiddenNode(){
+//		Random rand = new Random();
+//		value = rand.nextFloat();
+//	}
 	
 	public void setValue(float f){
 		value = f;
@@ -20,10 +26,11 @@ public class OutputNode extends Node {
 	public List<Connection> getConnections(){
 		return connections;
 	}
-	
+
 	@Override
 	public float GetValue() {
-		return value;
+		return Sigmoid(value);
 	}
-
+	
+	
 }
